@@ -19,7 +19,7 @@ Before you begin, ensure you have met the following requirements:
 
 ## Setup
 
-### 1. Backend (Spring Boot)
+### How to run UI ?
 
 #### Clone the Repository
 
