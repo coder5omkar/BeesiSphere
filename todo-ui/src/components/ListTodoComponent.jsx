@@ -92,7 +92,7 @@ const ListTodoComponent = () => {
 
   return (
     <div className="container">
-      <h2 className="text-center">MAIN PANEL</h2>
+      <h2 className="text-center">DASHBOARD</h2>
       <button className="btn btn-primary mb-2" onClick={addNewTodo}>
         Add New BC
       </button>
