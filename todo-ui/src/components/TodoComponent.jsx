@@ -152,7 +152,7 @@ const TodoComponent = () => {
                 />
               </div>
 
-              <div className="form-group mb-2">
+              {/* <div className="form-group mb-2">
                 <label className="form-label">BC Completed:</label>
                 <select
                   className="form-control"
@@ -162,7 +162,7 @@ const TodoComponent = () => {
                   <option value="false">No</option>
                   <option value="true">Yes</option>
                 </select>
-              </div>
+              </div> */}
 
               <button
                 className="btn btn-success"

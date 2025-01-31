@@ -3,10 +3,8 @@ import { useParams, useNavigate } from "react-router-dom";
 import { Pie } from "react-chartjs-2";
 import {
   getAllMembers,
-  saveMember,
-  updateMember,
   deleteMember,
-  getMember,
+  getMemberByBCID
 } from "../services/MemberService";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 
@@ -21,12 +19,12 @@ const MemberComponent = () => {
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    fetchMembers();
-  }, []);
+    fetchContries();
+  }, [todoId]);
 
   const fetchMembers = async () => {
     try {
-      const response = await getAllMembers();
+      const response = await getMemberByBCID(todoId);
       const filteredMembers = response.data.filter(
         (member) => member.todo === parseInt(todoId)
       );

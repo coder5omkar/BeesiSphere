@@ -23,3 +23,6 @@ export const getMember = (id) => axios.get(BASE_REST_API_URL + '/' + id)
 export const updateMember = (id, member) => axios.put(BASE_REST_API_URL + '/' + id, member)
 
 export const deleteMember = (id) => axios.delete(BASE_REST_API_URL + '/' + id)
+
+export const getMemberByBCID = (BCID) => 
+  axios.get(`${BASE_REST_API_URL}/members/${BCID}`);

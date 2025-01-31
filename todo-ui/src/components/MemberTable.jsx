@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { getAllMembers, deleteMember } from "../services/MemberService";
+import { getMemberByBCID, deleteMember } from "../services/MemberService";
 import { Pie } from "react-chartjs-2"; // Importing chart for the pie chart
 import "chart.js/auto"; // Required for Chart.js
 
@@ -17,11 +17,15 @@ const MemberTable = () => {
 
   const fetchMembers = async () => {
     try {
-      const response = await getAllMembers();
-      const filteredMembers = response.data.filter(
-        (member) => member.todo === parseInt(todoId)
-      );
-      setMembers(filteredMembers);
+      const response = await getMemberByBCID(todoId);
+      const membersWithCalculatedAmounts = response.data.map((member) => ({
+        ...member,
+        amountReceived: member.contributions.reduce(
+          (sum, contribution) => sum + (contribution.amount || 0),
+          0
+        ), // Calculate total contributions
+      }));
+      setMembers(membersWithCalculatedAmounts);
     } catch (error) {
       console.error("Error fetching members:", error);
     }

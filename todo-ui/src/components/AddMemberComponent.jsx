@@ -14,6 +14,11 @@ const AddMemberComponent = () => {
   const { todoId } = useParams(); // Get the todoId from route params
   const navigate = useNavigate();
 
+  const getTodayDate = () => {
+    const today = new Date();
+    return today.toISOString().split("T")[0]; // Returns date in "YYYY-MM-DD"
+  };
+
   const [member, setMember] = useState({
     name: "",
     email: "",
@@ -22,7 +27,7 @@ const AddMemberComponent = () => {
     amountReceived: "",
     maturityAmount: "",
     status: MemberStatusEnum.ACTIVE, // Default to ACTIVE status
-    dateJoined: "",
+    dateJoined: getTodayDate(),
     maturityDate: "",
     todo: todoId, // Automatically associate with the current todoId
   });
@@ -96,7 +101,7 @@ const AddMemberComponent = () => {
           </div>
         </div>
 
-        <div className="row mb-3">
+        {/* <div className="row mb-3">
           <div className="col-md-6">
             <label className="form-label">Amount Received:</label>
             <input
@@ -106,8 +111,8 @@ const AddMemberComponent = () => {
               value={member.amountReceived}
               onChange={handleChange}
               required
-            />
-          </div>
+            /> */}
+          {/* </div>
           <div className="col-md-6">
             <label className="form-label">Maturity Amount:</label>
             <input
@@ -119,7 +124,7 @@ const AddMemberComponent = () => {
               required
             />
           </div>
-        </div>
+        </div> */}
 
         <div className="row mb-3">
           <div className="col-md-6">
@@ -150,7 +155,7 @@ const AddMemberComponent = () => {
           </div>
         </div>
 
-        <div className="row mb-3">
+        {/* <div className="row mb-3">
           <div className="col-md-6">
             <label className="form-label">Maturity Date:</label>
             <input
@@ -162,7 +167,7 @@ const AddMemberComponent = () => {
               required
             />
           </div>
-        </div>
+        </div> */}
 
         <div className="text-center">
           <button type="submit" className="btn btn-primary mt-3 px-4 py-2">

@@ -92,7 +92,7 @@ const ListTodoComponent = () => {
 
   return (
     <div className="container">
-      <h2 className="text-center">DASHBOARD</h2>
+      <h2 className="text-center">MAIN PANEL</h2>
       <button className="btn btn-primary mb-2" onClick={addNewTodo}>
         Add New BC
       </button>
@@ -105,9 +105,9 @@ const ListTodoComponent = () => {
               <th>BC Title</th>
               <th>BC Description</th>
               <th>BC Frequncy</th>
-              <th>NOI</th>
-              <th>INT Amt</th>
-              <th>BC Completed</th>
+              <th>Number of Installment</th>
+              <th>Installment Amt</th>
+              <th>Total Amount</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -121,7 +121,7 @@ const ListTodoComponent = () => {
                 <td>{todo.frequency}</td>
                 <td>{todo.numberOfInstallments}</td>
                 <td>{todo.bcAmount}</td>
-                <td>{todo.completed ? "YES" : "NO"}</td>
+                <td>{todo.numberOfInstallments * todo.bcAmount}</td>
                 <td>
                   <button
                     className="btn btn-info btn-sm"
@@ -136,20 +136,20 @@ const ListTodoComponent = () => {
                   >
                     Delete
                   </button>
-                  <button
+                  {/* <button
                     className="btn btn-success btn-sm"
                     onClick={() => markCompleteTodo(todo.id)}
                     style={{ marginLeft: "10px" }}
                   >
                     Complete
-                  </button>
-                  <button
+                  </button> */}
+                  {/* <button
                     className="btn btn-info btn-sm"
                     onClick={() => markInCompleteTodo(todo.id)}
                     style={{ marginLeft: "10px" }}
                   >
                     In Complete
-                  </button>
+                  </button> */}
                   <button
                     className="btn btn-success btn-sm"
                     onClick={() => viewMembers(todo)}
