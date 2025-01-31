@@ -1,0 +1,58 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    ports:
+      - "3309:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root      # Set the root password correctly
+      MYSQL_DATABASE: tododb
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -uroot -p${MYSQL_ROOT_PASSWORD} || exit 1"]
+      interval: 10s
+      retries: 3
+    networks:
+      - mynetwork
+
+  sb-app:
+    build: ./todo-management
+    image: "todo-management:s1"
+    container_name: todo_ms
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/tododb
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root  # Ensure the correct password is set
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - mynetwork
+    command: ["java", "-jar", "/app/todo-management-0.0.1-SNAPSHOT.jar"]
+    deploy:
+      resources:
+        limits:
+          memory: 900M
+
+  ui-app:
+    build: ./todo-ui  # Replace with the correct path to your ui_app's Dockerfile directory
+    container_name: ui_app
+    ports:
+      - "3000:3000"  # React app default port (can be changed as per your configuration)
+    networks:
+      - mynetwork
+    environment:
+      AUTH_REST_API_BASE_URL: "http://sb-app:8080"
+
+volumes:
+  mysql_data:
+    driver: local
+
+networks:
+  mynetwork:
+    driver: bridge
