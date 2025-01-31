@@ -24,7 +24,7 @@ const UpdateMemberComponent = () => {
     status: MemberStatusEnum.ACTIVE, // Default to ACTIVE status
     dateJoined: "",
     maturityDate: "",
-    todo: todoId, // Automatically associate with the current todoId
+    todoId: todoId, // Automatically associate with the current todoId
   });
 
   useEffect(() => {

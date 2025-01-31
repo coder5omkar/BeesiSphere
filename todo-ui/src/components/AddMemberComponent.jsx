@@ -11,7 +11,7 @@ const MemberStatusEnum = {
 };
 
 const AddMemberComponent = () => {
-  const { todoId } = useParams(); // Get the todoId from route params
+  const { todoId: todo } = useParams(); // Get the todoId from route params
   const navigate = useNavigate();
 
   const getTodayDate = () => {
@@ -29,7 +29,7 @@ const AddMemberComponent = () => {
     status: MemberStatusEnum.ACTIVE, // Default to ACTIVE status
     dateJoined: getTodayDate(),
     maturityDate: "",
-    todo: todoId, // Automatically associate with the current todoId
+    todoId: todo, // Automatically associate with the current todoId
   });
 
   const handleChange = (e) => {
@@ -41,7 +41,7 @@ const AddMemberComponent = () => {
     e.preventDefault();
     try {
       await saveMember(member); // Save the member via the service
-      navigate(`/members/${todoId}`); // Navigate back to the members list page after saving
+      navigate(`/members/${todo}`); // Navigate back to the members list page after saving
     } catch (error) {
       console.error("Error adding member:", error);
     }
@@ -49,7 +49,7 @@ const AddMemberComponent = () => {
 
   return (
     <div className="container mt-5">
-      <h2 className="text-center mb-4">Add New Member for BC ID: {todoId}</h2>
+      <h2 className="text-center mb-4">Add New Member for BC ID: {todo}</h2>
       <form onSubmit={handleSubmit} className="form-group shadow-sm p-4 rounded border">
         <div className="row mb-3">
           <div className="col-md-6">
