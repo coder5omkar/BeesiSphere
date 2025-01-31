@@ -15,4 +15,5 @@ public interface MemberService {
 
     void deleteMember(Long id);
 
+    List<MemberDto> getMembersByBCID(Long bcid);
 }

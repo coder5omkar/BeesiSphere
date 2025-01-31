@@ -9,6 +9,7 @@ import net.javaguides.todo.entity.Todo;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 
 @Setter
@@ -16,7 +17,6 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class MemberDto {
-
     private Long id;
     private String name;
     private String email;
@@ -27,5 +27,6 @@ public class MemberDto {
     private MemberStatus status;
     private Date dateJoined;
     private Date maturityDate;
-    private Long todo;
+    private Long todoId; // Instead of List<Todo>, we store the ID
+    private List<ContryDto> contributions; // To include country details
 }

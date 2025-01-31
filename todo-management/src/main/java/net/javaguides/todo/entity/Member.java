@@ -34,10 +34,10 @@ public class Member {
     @Column
     private String address; // Member's address
 
-    @Column(nullable = false)
+    @Column
     private BigDecimal amountReceived; // Amount received from the business collection process
 
-    @Column(nullable = false)
+    @Column
     private BigDecimal maturityAmount; // Expected maturity amount at the end of the collection process
 
     @Enumerated(EnumType.STRING)
@@ -54,7 +54,7 @@ public class Member {
     @JoinColumn(name = "todo_id", nullable = false)
     private Todo todo;
 
-    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<Contry> countrys;
 }
 

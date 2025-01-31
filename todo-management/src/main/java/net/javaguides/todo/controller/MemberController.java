@@ -1,7 +1,9 @@
 package net.javaguides.todo.controller;
 
 import lombok.AllArgsConstructor;
+import net.javaguides.todo.dto.ContryDto;
 import net.javaguides.todo.dto.MemberDto;
+import net.javaguides.todo.service.ContryService;
 import net.javaguides.todo.service.MemberService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +20,8 @@ public class MemberController {
 
     private MemberService memberService;
 
+    private ContryService contryService;
+
     @PreAuthorize("hasAnyRole('ADMIN','USER')")
     @PostMapping
     public ResponseEntity<MemberDto> addMember(@RequestBody MemberDto memberDto){
@@ -32,6 +36,13 @@ public class MemberController {
     public ResponseEntity<MemberDto> getMember(@PathVariable("id") Long memberId){
         MemberDto todoDto = memberService.getMember(memberId);
         return new ResponseEntity<>(todoDto, HttpStatus.OK);
+    }
+
+    @PreAuthorize("hasAnyRole('ADMIN','USER')")
+    @GetMapping("/members/{todoId}")
+    public ResponseEntity<List<MemberDto>> getMembersByBCID(@PathVariable("todoId") Long todoId) {
+        List<MemberDto> members = memberService.getMembersByBCID(todoId);
+        return ResponseEntity.ok(members);
     }
 
     // Build Get All Todos REST API
