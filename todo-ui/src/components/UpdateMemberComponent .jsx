@@ -108,7 +108,7 @@ const UpdateMemberComponent = () => {
             />
           </div>
         </div>
-
+{/* 
         <div className="row mb-3">
           <div className="col-md-6">
             <label className="form-label">Amount Received:</label>
@@ -132,7 +132,7 @@ const UpdateMemberComponent = () => {
               required
             />
           </div>
-        </div>
+        </div> */}
 
         <div className="row mb-3">
           <div className="col-md-6">
